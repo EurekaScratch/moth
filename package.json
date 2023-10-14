@@ -1,0 +1,27 @@
+{
+  "name": "moth",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint ./src/ --ext .js,.ts,tsx,jsx",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@suid/icons-material": "^0.6.11",
+    "@suid/material": "^0.15.1",
+    "solid-js": "^1.7.8"
+  },
+  "devDependencies": {
+    "@suid/vite-plugin": "^0.1.5",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "eslint": "^8.51.0",
+    "eslint-plugin-solid": "^0.13.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-solid": "^2.7.0"
+  }
+}
