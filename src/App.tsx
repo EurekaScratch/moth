@@ -58,6 +58,7 @@ function App () {
                 
             }
         });
+        window.opener.postMessage({type: 'allocate'});
     });
 
     return (
