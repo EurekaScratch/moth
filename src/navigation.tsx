@@ -17,11 +17,12 @@ import ExtensionIcon from '@suid/icons-material/ExtensionRounded';
 import MenuIcon from '@suid/icons-material/Menu';
 import GallaryIcon from '@suid/icons-material/StorefrontRounded';
 import SettingsIcon from '@suid/icons-material/SettingsRounded';
+import type { ClientInfo } from './App';
 
 interface NavigationProps {
     page (): string;
     navigateTo (page: string): void;
-    version?: string;
+    clientInfo (): ClientInfo | null;
 }
 
 function Navigation (props: NavigationProps) {
@@ -107,7 +108,7 @@ function Navigation (props: NavigationProps) {
                             </ListItemButton>
                         </ListItem>
                         <ListItem>
-                            <Typography color='text.secondary'>{props.version ? `Version: ${props.version}` : 'Not connected'}</Typography>
+                            <Typography color='text.secondary'>{!!props.clientInfo() ? `Version: ${props.clientInfo()!.version}` : 'Not connected'}</Typography>
                         </ListItem>
                     </List>
                 </Box>

@@ -15,11 +15,18 @@ import {
     TextField,
     Typography
 } from '@suid/material';
-import { createSignal } from 'solid-js';
+import type { ExtensionInfo } from './App';
+import { createSignal, Show, For } from 'solid-js';
 
-function Enabled () {
+interface EnabledProps {
+    extensions(): ExtensionInfo[];
+}
+
+function Enabled (props: EnabledProps) {
     const [addModalOpen, setAddModalStatus] = createSignal(false);
     const [sandboxChecked, setSandboxChecked] = createSignal(false);
+    const [url, setUrl] = createSignal('');
+
     return (
         <>
             <Dialog
@@ -35,6 +42,11 @@ function Enabled () {
                         sx={{paddingTop: '0.5rem'}}
                     >
                         <TextField
+                            required
+                            value={url()}
+                            onChange={(_, value) => {
+                                setUrl(value);
+                            }}
                             label='Enter your extension URL'
                             fullWidth
                         />
@@ -52,7 +64,17 @@ function Enabled () {
                     />
                 </DialogContent>
                 <DialogActions>
-                <Button>Load</Button>
+                <Button onClick={() => {
+                    window.postMessage({
+                        type: 'load',
+                        info: {
+                            url: url(),
+                            sandboxed: sandboxChecked()
+                        }
+                    }, '*');
+                    setUrl('');
+                    setAddModalStatus(false);
+                }}>Load</Button>
                 </DialogActions>
             </Dialog>
             <Button
@@ -61,23 +83,29 @@ function Enabled () {
             >Add Extension</Button>
             <div style={{margin: '1rem 0'}} />
             <Stack spacing={2} flexWrap='wrap'>
-                <Card>
+                <Show when={props.extensions() !== null}>
+                    <For each={props.extensions()}>
+                        {(extension) => (
+                            <Card>
                     <CardContent sx={{
                         display: 'flex',
                         alignItems: 'center',
                         flexDirection: 'row'
                     }}>
-                        <Typography>Giru</Typography>
+                        <Typography>{extension.name}</Typography>
                         <Chip
                             sx={{marginLeft: 'auto'}}
-                            color='error'
-                            label='Unsandboxed'
+                            color={extension.sandboxed ? 'primary' : 'error'}
+                            label={extension.sandboxed ? 'Sandboxed' : 'Unsandboxed'}
                         />
                     </CardContent>
                     <CardActions>
-                        <Button size='small'>Reload</Button>
+                        <Button disabled size='small'>Reload</Button>
                     </CardActions>
                 </Card>
+                        )}
+                    </For>
+                </Show>
             </Stack>
         </>
     );
