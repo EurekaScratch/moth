@@ -65,7 +65,7 @@ function Enabled (props: EnabledProps) {
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={() => {
-                    window.parent.postMessage({
+                    window.opener.postMessage({
                         type: 'load',
                         info: {
                             url: url(),
