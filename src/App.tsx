@@ -58,7 +58,7 @@ function App () {
                 
             }
         });
-        window.opener.postMessage({type: 'allocate'});
+        window.opener.postMessage({type: 'allocate'}, '*');
     });
 
     return (
