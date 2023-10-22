@@ -108,7 +108,7 @@ function Navigation (props: NavigationProps) {
                             </ListItemButton>
                         </ListItem>
                         <ListItem>
-                            <Typography color='text.secondary'>{!!props.clientInfo() ? `Version: ${props.clientInfo()!.version}` : 'Not connected'}</Typography>
+                            <Typography color='text.secondary'>{props.clientInfo() ? `Version: ${props.clientInfo()!.version}` : 'Not connected'}</Typography>
                         </ListItem>
                     </List>
                 </Box>

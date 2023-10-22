@@ -1,0 +1,21 @@
+{
+    "SimonShiki": {
+        "scopeVar": {
+            "name": "Scope Variables",
+            "description": "Manage your data inside stack (or substack).",
+            "unsandboxed": true,
+            "compatible": ["sc", "cc", "acamp", "gitblock", "xmw"],
+            "incompatible": ["tw", "40code", "ccw", "cocrea"],
+            "minimum_chibi_version": 3
+        }
+    },
+    "LoserFox": {
+        "postprocessing": {
+            "name": "Post-Processing",
+            "description": "Extension for dispersion, glitches and other postprocess on the stage",
+            "unsandboxed": true,
+            "compatible": ["sc", "tw"],
+            "minimum_chibi_version": 3
+        }
+    }
+}

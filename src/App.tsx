@@ -1,5 +1,6 @@
 import Navigation from './navigation';
 import Enabled from './enabled';
+import Gallary from './gallary';
 import { createSignal, onMount, Show } from 'solid-js';
 
 export interface ExtensionInfo {
@@ -70,7 +71,16 @@ function App () {
             />
             <div style={{margin: '1rem'}}>
                 <Show when={page() === 'enabled'}>
-                    <Enabled extensions={extensionInfos} />
+                    <Enabled
+                        extensions={extensionInfos}
+                        clientInfo={clientInfo}
+                    />
+                </Show>
+                <Show when={page() === 'gallary'}>
+                    <Gallary
+                        enabled={extensionInfos}
+                        clientInfo={clientInfo}
+                    />
                 </Show>
             </div>
         </>

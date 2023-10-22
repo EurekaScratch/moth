@@ -15,11 +15,12 @@ import {
     TextField,
     Typography
 } from '@suid/material';
-import type { ExtensionInfo } from './App';
+import type { ExtensionInfo, ClientInfo } from './App';
 import { createSignal, Show, For } from 'solid-js';
 
 interface EnabledProps {
     extensions(): ExtensionInfo[];
+    clientInfo(): ClientInfo | null;
 }
 
 function Enabled (props: EnabledProps) {
@@ -64,21 +65,22 @@ function Enabled (props: EnabledProps) {
                     />
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={() => {
-                    window.opener.postMessage({
-                        type: 'load',
-                        info: {
-                            url: url(),
-                            sandboxed: sandboxChecked()
-                        }
-                    }, '*');
-                    setUrl('');
-                    setAddModalStatus(false);
-                }}>Load</Button>
+                    <Button onClick={() => {
+                        window.opener.postMessage({
+                            type: 'load',
+                            info: {
+                                url: url(),
+                                sandboxed: sandboxChecked()
+                            }
+                        }, '*');
+                        setUrl('');
+                        setAddModalStatus(false);
+                    }}>Load</Button>
                 </DialogActions>
             </Dialog>
             <Button
                 variant='contained'
+                disabled={props.clientInfo() === null}
                 onClick={() => setAddModalStatus(true)}
             >Add Extension</Button>
             <div style={{margin: '1rem 0'}} />
@@ -87,22 +89,22 @@ function Enabled (props: EnabledProps) {
                     <For each={props.extensions()}>
                         {(extension) => (
                             <Card>
-                    <CardContent sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexDirection: 'row'
-                    }}>
-                        <Typography>{extension.name}</Typography>
-                        <Chip
-                            sx={{marginLeft: 'auto'}}
-                            color={extension.sandboxed ? 'primary' : 'error'}
-                            label={extension.sandboxed ? 'Sandboxed' : 'Unsandboxed'}
-                        />
-                    </CardContent>
-                    <CardActions>
-                        <Button disabled size='small'>Reload</Button>
-                    </CardActions>
-                </Card>
+                                <CardContent sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    flexDirection: 'row'
+                                }}>
+                                    <Typography>{extension.name}</Typography>
+                                    <Chip
+                                        sx={{marginLeft: 'auto'}}
+                                        color={extension.sandboxed ? 'primary' : 'error'}
+                                        label={extension.sandboxed ? 'Sandboxed' : 'Unsandboxed'}
+                                    />
+                                </CardContent>
+                                <CardActions>
+                                    <Button disabled size='small'>Reload</Button>
+                                </CardActions>
+                            </Card>
                         )}
                     </For>
                 </Show>
