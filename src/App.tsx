@@ -49,6 +49,7 @@ function App () {
     });
 
     onMount(() => {
+        if (!window.opener) return;
         window.addEventListener("message", (event: MessageEvent) => {
             if (!('type' in event.data)) return;
             switch ((event.data as ChibiDispatched).type) {
