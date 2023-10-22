@@ -17,5 +17,14 @@
             "compatible": ["sc", "tw"],
             "minimum_chibi_version": 3
         }
+    },
+    "NOname_awa": {
+        "OPERATION": {
+            "name": "operation",
+            "description": "More operational blocks",
+            "unsandboxed": true,
+            "compatible": ["sc", "tw"],
+            "minimum_chibi_version": 3
+        }
     }
 }
