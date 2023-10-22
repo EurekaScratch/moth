@@ -129,9 +129,9 @@ function Gallary (props: GallaryProps) {
                 when={gallaryData() !== null}
                 fallback={(
                     <Stack spacing={2}>
-                        <Skeleton variant='rectangular' sx={{borderRadius: '4px'}} width={345} height={360} />
-                        <Skeleton variant='rectangular' sx={{borderRadius: '4px'}} width={345} height={360} />
-                        <Skeleton variant='rectangular' sx={{borderRadius: '4px'}} width={345} height={360} />
+                        <Skeleton variant='rectangular' sx={{borderRadius: '4px'}} width={345} height={340} />
+                        <Skeleton variant='rectangular' sx={{borderRadius: '4px'}} width={345} height={340} />
+                        <Skeleton variant='rectangular' sx={{borderRadius: '4px'}} width={345} height={340} />
                     </Stack>
                 )}
             >

@@ -1,6 +1,6 @@
 {
     "SimonShiki": {
-        "scopeVar": {
+        "shikiScopeVar": {
             "name": "Scope Variables",
             "description": "Manage your data inside stack (or substack).",
             "unsandboxed": true,

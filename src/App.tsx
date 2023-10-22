@@ -1,7 +1,7 @@
 import Navigation from './navigation';
 import Enabled from './enabled';
 import Gallary from './gallary';
-import { createSignal, onMount, Show } from 'solid-js';
+import { createSignal, createEffect, onMount, Show } from 'solid-js';
 
 export interface ExtensionInfo {
     name: string;
@@ -36,11 +36,17 @@ interface ChibiDispatchedSettings {
 
 type ChibiDispatched = ChibiDispatchedSettings | ChibiDispatchedExtensions | ChibiDispatchedClientInfo;
 
+const initialHash = window.location.hash.trim().slice(1);
+
 function App () {
-    const [page, navigateTo] = createSignal('enabled');
+    const [page, navigateTo] = createSignal(initialHash === '' ? 'enabled' : initialHash);
     const [clientInfo, setClientInfo] = createSignal<ClientInfo | null>(null);
     const [extensionInfos, setExtensionInfos] = createSignal<ExtensionInfo[]>([]);
     const [settings, setSettings] = createSignal<Partial<SettingsInfo>>({});
+
+    createEffect(() => {
+        window.location.hash = page();
+    });
 
     onMount(() => {
         window.addEventListener("message", (event: MessageEvent) => {
