@@ -160,7 +160,7 @@ function Gallary (props: GallaryProps) {
                                 <Show when={isAvailable(item, props.clientInfo())}>
                                     <Alert sx={{marginTop: '1rem'}} severity='success'>
                                         <AlertTitle>Congratulations!</AlertTitle>
-                                        This extension is marked as iompatible with your editor!
+                                        This extension is marked as can load perfectly in your editor!
                                     </Alert>
                                 </Show>
                             </CardContent>
