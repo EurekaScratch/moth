@@ -172,7 +172,7 @@ function Gallary (props: GallaryProps) {
                                         window.opener.postMessage({
                                             type: 'load',
                                             info: {
-                                                url: `${window.location.href}extensions/${item.author}/${item.id}.js`,
+                                                url: `${window.location.origin}/extensions/${item.author}/${item.id}.js`,
                                                 sandboxed: !item.unsandboxed
                                             }
                                         }, '*');
@@ -181,7 +181,7 @@ function Gallary (props: GallaryProps) {
                                     {enabledList().includes(item.id) ? 'Installed' : 'Install'}
                                 </Button>
                                 <Button size='small' onClick={() => {
-                                    navigator.clipboard.writeText(`${window.location.href}${item.author}/${item.id}.js`);
+                                    navigator.clipboard.writeText(`${window.location.origin}/${item.author}/${item.id}.js`);
                                 }}>Copy URL</Button>
                             </CardActions>
                         </Card>
