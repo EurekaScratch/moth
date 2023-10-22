@@ -172,7 +172,7 @@ function Gallary (props: GallaryProps) {
                                         window.opener.postMessage({
                                             type: 'load',
                                             info: {
-                                                url: `${window.location.href}${item.author}/${item.id}.js`,
+                                                url: `${window.location.href}extensions/${item.author}/${item.id}.js`,
                                                 sandboxed: !item.unsandboxed
                                             }
                                         }, '*');
