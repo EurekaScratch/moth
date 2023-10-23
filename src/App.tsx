@@ -36,16 +36,28 @@ interface ChibiDispatchedSettings {
 
 type ChibiDispatched = ChibiDispatchedSettings | ChibiDispatchedExtensions | ChibiDispatchedClientInfo;
 
+const subtitleMap = {
+    home: 'Load scratch extension everywhere.',
+    manage: 'Manage Extension',
+    gallary: 'Extension Gallary',
+    settings: 'Settings'
+} as const;
+
 const initialHash = window.location.hash.trim().slice(1);
 
 function App () {
-    const [page, navigateTo] = createSignal(initialHash === '' ? 'enabled' : initialHash);
+    const [page, navigateTo] = createSignal(initialHash === '' ? 'sideloaded' : initialHash);
     const [clientInfo, setClientInfo] = createSignal<ClientInfo | null>(null);
     const [extensionInfos, setExtensionInfos] = createSignal<ExtensionInfo[]>([]);
     const [settings, setSettings] = createSignal<Partial<SettingsInfo>>({});
 
     createEffect(() => {
         window.location.hash = page();
+        if (page() in subtitleMap) {
+            document.title = `Chibi | ${subtitleMap[page() as keyof typeof subtitleMap]}`;
+        } else {
+            document.title = `Chibi`;
+        }
     });
 
     onMount(() => {
@@ -72,12 +84,13 @@ function App () {
     return (
         <>
             <Navigation
+                subtitleMap={subtitleMap}
                 clientInfo={clientInfo}
                 page={page}
                 navigateTo={navigateTo}
             />
             <div style={{margin: '1rem'}}>
-                <Show when={page() === 'enabled'}>
+                <Show when={page() === 'manage'}>
                     <Enabled
                         extensions={extensionInfos}
                         clientInfo={clientInfo}

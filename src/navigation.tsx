@@ -20,6 +20,7 @@ import SettingsIcon from '@suid/icons-material/SettingsRounded';
 import type { ClientInfo } from './App';
 
 interface NavigationProps {
+    subtitleMap: Record<string, string>;
     page (): string;
     navigateTo (page: string): void;
     clientInfo (): ClientInfo | null;
@@ -47,7 +48,7 @@ function Navigation (props: NavigationProps) {
                             component='div'
                             sx={{ flexGrow: 1, userSelect: 'none' }}
                         >
-                            Chibi Management
+                            {props.page() in props.subtitleMap ? props.subtitleMap[props.page()] : 'Chibi'}
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -68,14 +69,14 @@ function Navigation (props: NavigationProps) {
                         <ListItem
                             disablePadding
                             sx={{
-                                background: props.page() === 'enabled' ? '#1e88e54c' : 'transparent'
+                                background: props.page() === 'manage' ? '#1e88e54c' : 'transparent'
                             }}
                         >
-                            <ListItemButton onClick={() => props.navigateTo('enabled')}>
+                            <ListItemButton onClick={() => props.navigateTo('manage')}>
                                 <ListItemIcon>
                                     <ExtensionIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Enabled Extensions' />
+                                <ListItemText primary='Manage Extension' />
                             </ListItemButton>
                         </ListItem>
                         <ListItem
