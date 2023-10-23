@@ -9,6 +9,7 @@ import {
     Skeleton,
     Box,
     Stack,
+    Chip,
     Typography,
     Alert,
     AlertTitle
@@ -147,6 +148,11 @@ function Gallary (props: GallaryProps) {
                             <CardContent>
                                 <Typography gutterBottom variant='h5' component='div'>
                                     {item.name}
+                                    <Chip
+                                        sx={{marginLeft: '0.5rem'}}
+                                        color={item.unsandboxed ? 'error' : 'primary'}
+                                        label={item.unsandboxed ? 'Unsandboxed' : 'Sandboxed'}
+                                    />
                                 </Typography>
                                 <Typography variant='body2' color='text.secondary'>
                                     {`${item.description} (This extension is authored by ${item.author})`}
@@ -181,7 +187,7 @@ function Gallary (props: GallaryProps) {
                                     {enabledList().includes(item.id) ? 'Installed' : 'Install'}
                                 </Button>
                                 <Button size='small' onClick={() => {
-                                    navigator.clipboard.writeText(`${window.location.origin}/${item.author}/${item.id}.js`);
+                                    navigator.clipboard.writeText(`${window.location.origin}/extensions/${item.author}/${item.id}.js`);
                                 }}>Copy URL</Button>
                             </CardActions>
                         </Card>
