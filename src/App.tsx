@@ -1,5 +1,6 @@
 import Navigation from './navigation';
 import Enabled from './enabled';
+import Home from './home';
 import Gallary from './gallary';
 import { createSignal, createEffect, onMount, Show } from 'solid-js';
 
@@ -37,7 +38,6 @@ interface ChibiDispatchedSettings {
 type ChibiDispatched = ChibiDispatchedSettings | ChibiDispatchedExtensions | ChibiDispatchedClientInfo;
 
 const subtitleMap = {
-    home: 'Load scratch extension everywhere.',
     manage: 'Manage Extension',
     gallary: 'Extension Gallary',
     settings: 'Settings'
@@ -101,6 +101,9 @@ function App () {
                         enabled={extensionInfos}
                         clientInfo={clientInfo}
                     />
+                </Show>
+                <Show when={page() === 'home'}>
+                    <Home />
                 </Show>
             </div>
         </>

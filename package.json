@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.0.8",
     "@suid/icons-material": "^0.6.11",
     "@suid/material": "^0.15.1",
     "solid-js": "^1.7.8"

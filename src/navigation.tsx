@@ -13,6 +13,7 @@ import {
     ListItemText,
     Divider
 } from '@suid/material';
+import HomeIcon from '@suid/icons-material/HomeRounded';
 import ExtensionIcon from '@suid/icons-material/ExtensionRounded';
 import MenuIcon from '@suid/icons-material/Menu';
 import GallaryIcon from '@suid/icons-material/StorefrontRounded';
@@ -66,6 +67,19 @@ function Navigation (props: NavigationProps) {
                     onKeyDown={() =>setDrawerOpen(false)}
                 >
                     <List>
+                        <ListItem
+                            disablePadding
+                            sx={{
+                                background: props.page() === 'home' ? '#1e88e54c' : 'transparent'
+                            }}
+                        >
+                            <ListItemButton onClick={() => props.navigateTo('home')}>
+                                <ListItemIcon>
+                                    <HomeIcon />
+                                </ListItemIcon>
+                                <ListItemText primary='Home' />
+                            </ListItemButton>
+                        </ListItem>
                         <ListItem
                             disablePadding
                             sx={{
