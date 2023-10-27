@@ -46,7 +46,7 @@ const subtitleMap = {
 const initialHash = window.location.hash.trim().slice(1);
 
 function App () {
-    const [page, navigateTo] = createSignal(initialHash === '' ? 'manage' : initialHash);
+    const [page, navigateTo] = createSignal(initialHash === '' ? 'home' : initialHash);
     const [clientInfo, setClientInfo] = createSignal<ClientInfo | null>(null);
     const [extensionInfos, setExtensionInfos] = createSignal<ExtensionInfo[]>([]);
     const [settings, setSettings] = createSignal<Partial<SettingsInfo>>({});
