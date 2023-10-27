@@ -9,6 +9,8 @@
   const canvas = renderer.canvas;
   const runtime = vm.runtime;
   let SBG = false;
+  //检测是否为小码王平台, 该平台的scratch源码较旧,需要特别处理
+  const isXMW = window.location.hostname.match(/xiaomawang\.com/);
   Scratch.translate.setup({
     zh: {
       opcodeChangePostProcess: '设置屏幕特效为[Menu]',
@@ -607,7 +609,8 @@
     timeUniform();
     bindFramebufferInfo(gl, null); //modified
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-    gl.clearColor(...this._backgroundColor4f);
+    if(!isXMW){gl.clearColor(...this._backgroundColor4f);}
+    else{gl.clearColor(...this._backgroundColor);}
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.bindTexture(gl.TEXTURE_2D, framebuffertexture);
     positionLocation = gl.getAttribLocation(drawprogram, "a_position");
@@ -629,7 +632,8 @@
   const rendererDrawBGPostfix = function () {
     timeUniform();
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-    gl.clearColor(...this._backgroundColor4f);
+    if(!isXMW){gl.clearColor(...this._backgroundColor4f);}
+    else{gl.clearColor(...this._backgroundColor);}
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.bindTexture(gl.TEXTURE_2D, framebuffertexture);
 
@@ -722,8 +726,8 @@
   class postprocessing {
     getInfo() {
       return {
-        id: "postprocessing",
-        name: "Post-Processing",
+        id: "postprocessingv2",
+        name: "Post-Processing V2",
         blocks: [
           {
             opcode: "opcodeChangePostProcess",
