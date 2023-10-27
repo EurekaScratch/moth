@@ -726,8 +726,8 @@
   class postprocessing {
     getInfo() {
       return {
-        id: "postprocessingv2",
-        name: "Post-Processing V2",
+        id: "postprocessing",
+        name: "Post-Processing",
         blocks: [
           {
             opcode: "opcodeChangePostProcess",
