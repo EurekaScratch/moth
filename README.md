@@ -34,7 +34,9 @@ enum Platform {
     TurboWarp = 'tw',
     FortyCode = '40code',
     CCW = 'ccw',
-    Cocrea = 'Cocrea'
+    Cocrea = 'Cocrea',
+    TurboWarpCN = 'twcn',
+    rCodenow = 'rc'
 }
 
 ```

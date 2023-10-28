@@ -26,7 +26,9 @@ enum Platform {
     TurboWarp = 'tw',
     FortyCode = '40code',
     CCW = 'ccw',
-    Cocrea = 'Cocrea'
+    Cocrea = 'Cocrea',
+    TurboWarpCN = 'twcn',
+    rCodenow = 'rc'
 }
 
 interface GallaryInfo {
@@ -56,7 +58,9 @@ const platformMap = {
     [Platform.TurboWarp]: 'turbowarp.org',
     [Platform.FortyCode]: 'www.40code.com',
     [Platform.CCW]: 'www.ccw.site',
-    [Platform.Cocrea]: 'cocrea.world'
+    [Platform.Cocrea]: 'cocrea.world',
+    [Platform.TurboWarpCN]: 'editor.turbowarp.cn',
+    [Platform.rCodenow]: '0832.ink/rc'
 };
 
 function isUnavailable (info: GallaryInfo, clientInfo: ClientInfo | null) {
