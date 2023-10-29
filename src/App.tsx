@@ -81,6 +81,15 @@ function App () {
         window.opener.postMessage({type: 'allocate'}, '*');
     });
 
+    onMount(() => {
+        window.addEventListener('hashchange', () => {
+            const currentPage = window.location.hash.trim().slice(1);
+            if (currentPage !== page()) {
+                navigateTo(currentPage);
+            }
+        });
+    });
+
     return (
         <>
             <Navigation
