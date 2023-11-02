@@ -47,47 +47,47 @@ function Home () {
                 alignItems: 'center',
                 textAlign: 'center'
             }}>
-            <Typography variant='h5' sx={{fontWeight: 500}}>
+                <Typography variant='h5' sx={{fontWeight: 500}}>
                 Load ANY Scratch extensions in ANY Scratch-based editors.
-            </Typography>
-            <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
+                </Typography>
+                <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
                 Chibi loads extensions by directly injecting them into the Scratch virtual machine,
                 which allows you to use your favorite extensions without being restricted by the editor itself.
-            </Typography>
-            <Stack direction={{ xs: 'column', sm: 'row' }} sx={{flexFlow: 'wrap', justifyContent: 'center'}}>
-                <Card sx={{width: '300px', margin: '1rem'}}>
-                    <CardMedia
-                        component='img'
-                        alt='screenshot from scratch'
-                        height='240'
-                        image='/carousel/scratch.png'
+                </Typography>
+                <Stack direction={{ xs: 'column', sm: 'row' }} sx={{flexFlow: 'wrap', justifyContent: 'center'}}>
+                    <Card sx={{width: '300px', margin: '1rem'}}>
+                        <CardMedia
+                            component='img'
+                            alt='screenshot from scratch'
+                            height='240'
+                            image='/carousel/scratch.png'
                         />
-                </Card>
-                <Card sx={{width: '300px', margin: '1rem'}}>
-                    <CardMedia
-                        component='img'
-                        alt='screenshot from acamp'
-                        height='240'
-                        image='/carousel/acamp.png'
+                    </Card>
+                    <Card sx={{width: '300px', margin: '1rem'}}>
+                        <CardMedia
+                            component='img'
+                            alt='screenshot from acamp'
+                            height='240'
+                            image='/carousel/acamp.png'
                         />
-                </Card>
-                <Card sx={{width: '300px', margin: '1rem'}}>
-                    <CardMedia
-                        component='img'
-                        alt='screenshot from Gandi'
-                        height='240'
-                        image='/carousel/gandi.png'
+                    </Card>
+                    <Card sx={{width: '300px', margin: '1rem'}}>
+                        <CardMedia
+                            component='img'
+                            alt='screenshot from Gandi'
+                            height='240'
+                            image='/carousel/gandi.png'
                         />
-                </Card>
-                <Card sx={{width: '300px', margin: '1rem'}}>
-                    <CardMedia
-                        component='img'
-                        alt='screenshot from Turbowarp'
-                        height='240'
-                        image='/carousel/tw.png'
+                    </Card>
+                    <Card sx={{width: '300px', margin: '1rem'}}>
+                        <CardMedia
+                            component='img'
+                            alt='screenshot from Turbowarp'
+                            height='240'
+                            image='/carousel/tw.png'
                         />
-                </Card>
-            </Stack>
+                    </Card>
+                </Stack>
             </Box>
             <Box sx={{
                 display: 'flex',
@@ -95,19 +95,19 @@ function Home () {
                 alignItems: 'center',
                 textAlign: 'center'
             }}>
-            <Typography variant='h5' sx={{fontWeight: 500}}>
+                <Typography variant='h5' sx={{fontWeight: 500}}>
                 Write once, Run everywhere
-            </Typography>
-            <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
+                </Typography>
+                <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
                 Chibi implements the loader independently, which means extensions have a unified implementation standard rather rely on the editor.
-            </Typography>
-            <Card sx={{width: '100%', maxWidth: '400px', marginTop: '1rem'}}>
-                <CardMedia
-                    component='img'
-                    alt='loader code preview'
-                    image='/carbon.png'
+                </Typography>
+                <Card sx={{width: '100%', maxWidth: '400px', marginTop: '1rem'}}>
+                    <CardMedia
+                        component='img'
+                        alt='loader code preview'
+                        image='/carbon.png'
                     />
-            </Card>
+                </Card>
             </Box>
             <Box sx={{
                 display: 'flex',
@@ -115,12 +115,12 @@ function Home () {
                 alignItems: 'center',
                 textAlign: 'center'
             }}>
-            <Typography variant='h5' sx={{fontWeight: 500}}>
+                <Typography variant='h5' sx={{fontWeight: 500}}>
                 Compatible with most popular extension loading methods
-            </Typography>
-            <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
+                </Typography>
+                <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
                 Chibi adds support for non-sandbox extensions and TurboWarp extensions. This means you can seamlessly sideload these extensions into your projects.
-            </Typography>
+                </Typography>
             </Box>
         </Stack>
     );

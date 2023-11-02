@@ -1,6 +1,7 @@
 import Navigation from './navigation';
 import Enabled from './enabled';
 import Home from './home';
+import Settings from './settings';
 import Gallary from './gallary';
 import { createSignal, createEffect, onMount, Show } from 'solid-js';
 
@@ -10,9 +11,9 @@ export interface ExtensionInfo {
 }
 
 export interface SettingsInfo {
-    core: boolean;
-    patchRegisterExtensionPrimitives: boolean;
-    noPrompt: boolean;
+    convertProcCall: boolean;
+    dontExposeCtx: boolean;
+    noConfirmDialog: boolean;
 }
 
 export interface ClientInfo {
@@ -99,6 +100,9 @@ function App () {
                 navigateTo={navigateTo}
             />
             <div style={{margin: '1rem'}}>
+                <Show when={page() === 'home'}>
+                    <Home />
+                </Show>
                 <Show when={page() === 'manage'}>
                     <Enabled
                         extensions={extensionInfos}
@@ -111,8 +115,11 @@ function App () {
                         clientInfo={clientInfo}
                     />
                 </Show>
-                <Show when={page() === 'home'}>
-                    <Home />
+                <Show when={page() === 'settings'}>
+                    <Settings
+                        clientInfo={clientInfo}
+                        settings={settings}
+                    />
                 </Show>
             </div>
         </>
