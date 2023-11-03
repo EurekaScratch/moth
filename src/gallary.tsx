@@ -28,7 +28,8 @@ enum Platform {
     CCW = 'ccw',
     Cocrea = 'Cocrea',
     TurboWarpCN = 'twcn',
-    rCodenow = 'rc'
+    rCodenow = 'rc',
+    Xueersi = 'xueersi'
 }
 
 interface GallaryInfo {
@@ -60,7 +61,8 @@ const platformMap = {
     [Platform.CCW]: 'www.ccw.site',
     [Platform.Cocrea]: 'cocrea.world',
     [Platform.TurboWarpCN]: 'editor.turbowarp.cn',
-    [Platform.rCodenow]: '0832.ink/rc'
+    [Platform.rCodenow]: '0832.ink',
+    [Platform.Xueersi]: 'code.xueersi.com'
 };
 
 function isUnavailable (info: GallaryInfo, clientInfo: ClientInfo | null) {
