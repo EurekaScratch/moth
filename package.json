@@ -7,10 +7,14 @@
     "start": "vite",
     "build": "tsc && vite build",
     "lint": "eslint ./src/ --ext .js,.ts,tsx,jsx",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "extract": "formatjs extract 'src/**/*.{ts,tsx}' --ignore='**/*.d.ts' --out-file locales/en.json --format simple",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@cookbook/solid-intl": "^0.1.2",
     "@fontsource/roboto": "^5.0.8",
+    "@formatjs/cli": "^6.2.1",
     "@suid/icons-material": "^0.6.11",
     "@suid/material": "^0.15.1",
     "solid-js": "^1.7.8"
@@ -21,6 +25,8 @@
     "@typescript-eslint/parser": "^6.7.5",
     "eslint": "^8.51.0",
     "eslint-plugin-solid": "^0.13.0",
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "sharp": "^0.32.6",
     "svgo": "^3.0.2",
     "typescript": "^5.0.2",

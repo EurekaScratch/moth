@@ -4,6 +4,7 @@ import Home from './home';
 import Settings from './settings';
 import Gallary from './gallary';
 import { createSignal, createEffect, onMount, Show } from 'solid-js';
+import { defineMessages, useIntl } from '@cookbook/solid-intl';
 
 export interface ExtensionInfo {
     name: string;
@@ -38,10 +39,30 @@ interface ChibiDispatchedSettings {
 
 type ChibiDispatched = ChibiDispatchedSettings | ChibiDispatchedExtensions | ChibiDispatchedClientInfo;
 
+const messages = defineMessages({
+  chibi: {
+    id: 'app.name',
+    defaultMessage: 'Chibi',
+  },
+  manage: {
+    id: 'app.title.manage',
+    defaultMessage: 'Manage Extension',
+  },
+  gallary: {
+    id: 'app.title.gallary',
+    defaultMessage: 'Extension Gallary',
+  },
+  settings: {
+    id: 'app.title.settings',
+    defaultMessage: 'Settings',
+  }
+});
+
 const subtitleMap = {
-    manage: 'Manage Extension',
-    gallary: 'Extension Gallary',
-    settings: 'Settings'
+    default: messages.chibi,
+    manage: messages.manage,
+    gallary: messages.gallary,
+    settings: messages.settings
 } as const;
 
 const initialHash = window.location.hash.trim().slice(1);
@@ -51,19 +72,20 @@ function App () {
     const [clientInfo, setClientInfo] = createSignal<ClientInfo | null>(null);
     const [extensionInfos, setExtensionInfos] = createSignal<ExtensionInfo[]>([]);
     const [settings, setSettings] = createSignal<Partial<SettingsInfo>>({});
+    const intl = useIntl();
 
     createEffect(() => {
         window.location.hash = page();
         if (page() in subtitleMap) {
-            document.title = `Chibi | ${subtitleMap[page() as keyof typeof subtitleMap]}`;
+            document.title = `${intl.formatMessage(messages.chibi)} | ${intl.formatMessage(subtitleMap[page() as keyof typeof subtitleMap])}`;
         } else {
-            document.title = `Chibi`;
+            document.title = `${intl.formatMessage(messages.chibi)}`;
         }
     });
 
     onMount(() => {
         if (!window.opener) return;
-        window.addEventListener("message", (event: MessageEvent) => {
+        window.addEventListener('message', (event: MessageEvent) => {
             if (!('type' in event.data)) return;
             switch ((event.data as ChibiDispatched).type) {
             case 'handshake':

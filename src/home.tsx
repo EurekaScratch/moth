@@ -8,9 +8,11 @@ import {
     CardMedia,
     Stack
 } from '@suid/material';
+import { useIntl } from '@cookbook/solid-intl';
 import CodeIcon from '@suid/icons-material/Code';
 
 function Home () {
+    const intl = useIntl();
     return (
         <Stack
             spacing={10}
@@ -23,22 +25,42 @@ function Home () {
                 alignItems: 'center'
             }}>
                 <img alt='chibimoth' src='/chibi.png' style={{width: '200px'}} />
-                <Typography variant='h3' sx={{fontWeight: 500}}>Chibi</Typography>
-                <Typography variant='subtitle1' color='text.secondary'>Load your Scratch extensions anywhere.</Typography>
+                <Typography variant='h3' sx={{fontWeight: 500}}>
+                    {intl.formatMessage({
+                        id: 'app.home.title',
+                        defaultMessage: 'Chibi'
+                    })}
+                </Typography>
+                <Typography variant='subtitle1' color='text.secondary'>
+                    {intl.formatMessage({
+                        id: 'app.home.slogan',
+                        defaultMessage: 'Load your Scratch extensions anywhere.'
+                    })}
+                </Typography>
                 <Stack direction='row' spacing={2} sx={{marginTop: '2rem'}}>
                     <Button
                         variant='contained'
                         onClick={() => {
                             window.open('https://github.com/SimonShiki/scratch-chibi/releases');
                         }}
-                    >Install</Button>
+                    >
+                        {intl.formatMessage({
+                            id: 'app.home.install',
+                            defaultMessage: 'Install'
+                        })}
+                    </Button>
                     <Button
                         color='secondary'
                         variant='outlined'
                         onClick={() => {
                             window.open('https://github.com/SimonShiki/scratch-chibi');
                         }}
-                    >GitHub Repo</Button>
+                    >
+                        {intl.formatMessage({
+                            id: 'app.home.repo',
+                            defaultMessage: 'GitHub Repo'
+                        })}
+                    </Button>
                 </Stack>
             </Box>
             <Box sx={{
@@ -48,11 +70,18 @@ function Home () {
                 textAlign: 'center'
             }}>
                 <Typography variant='h5' sx={{fontWeight: 500}}>
-                Load ANY Scratch extensions in ANY Scratch-based editors.
+                    {intl.formatMessage({
+                        id: 'app.home.subtitle1',
+                        defaultMessage: 'Load ANY Scratch extensions in ANY Scratch-based editors.',
+                        description: 'Load ANY Scratch extensions in ANY Scratch-based editors.'
+                    })}
                 </Typography>
                 <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
-                Chibi loads extensions by directly injecting them into the Scratch virtual machine,
-                which allows you to use your favorite extensions without being restricted by the editor itself.
+                    {intl.formatMessage({
+                        id: 'app.home.subdescription1',
+                        defaultMessage: 'Chibi loads extensions by directly injecting them into the Scratch virtual machine, which allows you to use your favorite extensions without being restricted by the editor itself.',
+                        description: 'Chibi loads extensions by directly injecting them into the Scratch virtual machine, which allows you to use your favorite extensions without being restricted by the editor itself.'
+                    })}
                 </Typography>
                 <Stack direction={{ xs: 'column', sm: 'row' }} sx={{flexFlow: 'wrap', justifyContent: 'center'}}>
                     <Card sx={{width: '300px', margin: '1rem'}}>
@@ -96,10 +125,18 @@ function Home () {
                 textAlign: 'center'
             }}>
                 <Typography variant='h5' sx={{fontWeight: 500}}>
-                Write once, Run everywhere
+                    {intl.formatMessage({
+                        id: 'app.home.subtitle2',
+                        defaultMessage: 'Write once, Run everywhere',
+                        description: 'Write once, Run everywhere'
+                    })}
                 </Typography>
                 <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
-                Chibi implements the loader independently, which means extensions have a unified implementation standard rather rely on the editor.
+                    {intl.formatMessage({
+                        id: 'app.home.subdescription2',
+                        defaultMessage: 'Chibi implements the loader independently, which means extensions have a unified implementation standard rather rely on the editor.',
+                        description: 'Chibi implements the loader independently, which means extensions have a unified implementation standard rather rely on the editor.'
+                    })}
                 </Typography>
                 <Card sx={{width: '100%', maxWidth: '400px', marginTop: '1rem'}}>
                     <CardMedia
@@ -116,10 +153,18 @@ function Home () {
                 textAlign: 'center'
             }}>
                 <Typography variant='h5' sx={{fontWeight: 500}}>
-                Compatible with most popular extension loading methods
+                    {intl.formatMessage({
+                        id: 'app.home.subtitle3',
+                        defaultMessage: 'Compatible with most popular extension loading methods',
+                        description: 'Compatible with most popular extension loading methods'
+                    })}
                 </Typography>
                 <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
-                Chibi adds support for non-sandbox extensions and TurboWarp extensions. This means you can seamlessly sideload these extensions into your projects.
+                    {intl.formatMessage({
+                        id: 'app.home.subdescription3',
+                        defaultMessage: 'Chibi adds support for non-sandbox extensions and TurboWarp extensions. This means you can seamlessly sideload these extensions into your projects.',
+                        description: 'Chibi adds support for non-sandbox extensions and TurboWarp extensions. This means you can seamlessly sideload these extensions into your projects.'
+                    })}
                 </Typography>
             </Box>
         </Stack>

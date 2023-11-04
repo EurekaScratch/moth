@@ -18,17 +18,47 @@ import ExtensionIcon from '@suid/icons-material/ExtensionRounded';
 import MenuIcon from '@suid/icons-material/Menu';
 import GallaryIcon from '@suid/icons-material/StorefrontRounded';
 import SettingsIcon from '@suid/icons-material/SettingsRounded';
+import { defineMessages, useIntl } from '@cookbook/solid-intl';
 import type { ClientInfo } from './App';
+import type { MessageDescriptor } from '@cookbook/solid-intl';
 
 interface NavigationProps {
-    subtitleMap: Record<string, string>;
+    subtitleMap: Record<string, MessageDescriptor>;
     page (): string;
     navigateTo (page: string): void;
     clientInfo (): ClientInfo | null;
 }
 
+const messages = defineMessages({
+    home: {
+        id: 'app.navigation.home',
+        defaultMessage: 'Home'
+    },
+    manage: {
+        id: 'app.navigation.management',
+        defaultMessage: 'Manage Extension'
+    },
+    gallary: {
+        id: 'app.navigation.gallary',
+        defaultMessage: 'Extension Gallary'
+    },
+    settings: {
+        id: 'app.navigation.settings',
+        defaultMessage: 'Settings'
+    },
+    version: {
+        id: 'app.navigation.version',
+        defaultMessage: 'Version: '
+    },
+    notConnected: {
+        id: 'app.navigation.notConnected',
+        defaultMessage: 'Not Connected'
+    }
+});
+
 function Navigation (props: NavigationProps) {
     const [drawerOpen, setDrawerOpen] = createSignal(false);
+    const intl = useIntl();
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -49,7 +79,7 @@ function Navigation (props: NavigationProps) {
                             component='div'
                             sx={{ flexGrow: 1, userSelect: 'none' }}
                         >
-                            {props.page() in props.subtitleMap ? props.subtitleMap[props.page()] : 'Chibi'}
+                            {intl.formatMessage(props.page() in props.subtitleMap ? props.subtitleMap[props.page()] : props.subtitleMap.default)}
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -77,7 +107,7 @@ function Navigation (props: NavigationProps) {
                                 <ListItemIcon>
                                     <HomeIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Home' />
+                                <ListItemText primary={intl.formatMessage(messages.home)} />
                             </ListItemButton>
                         </ListItem>
                         <ListItem
@@ -90,7 +120,7 @@ function Navigation (props: NavigationProps) {
                                 <ListItemIcon>
                                     <ExtensionIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Manage Extension' />
+                                <ListItemText primary={intl.formatMessage(messages.manage)} />
                             </ListItemButton>
                         </ListItem>
                         <ListItem
@@ -103,7 +133,7 @@ function Navigation (props: NavigationProps) {
                                 <ListItemIcon>
                                     <GallaryIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Extensions Gallary' />
+                                <ListItemText primary={intl.formatMessage(messages.gallary)} />
                             </ListItemButton>
                         </ListItem>
                     </List>
@@ -119,11 +149,11 @@ function Navigation (props: NavigationProps) {
                                 <ListItemIcon>
                                     <SettingsIcon />
                                 </ListItemIcon>
-                                <ListItemText primary='Settings' />
+                                <ListItemText primary={intl.formatMessage(messages.settings)} />
                             </ListItemButton>
                         </ListItem>
                         <ListItem>
-                            <Typography color='text.secondary'>{props.clientInfo() ? `Version: ${props.clientInfo()!.version}` : 'Not connected'}</Typography>
+                            <Typography color='text.secondary'>{props.clientInfo() ? `${intl.formatMessage(messages.version)} ${props.clientInfo()!.version}` : intl.formatMessage(messages.notConnected)}</Typography>
                         </ListItem>
                     </List>
                 </Box>

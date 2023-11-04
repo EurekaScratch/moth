@@ -1,0 +1,38 @@
+diff --git a/node_modules/@cookbook/solid-intl/package.json b/node_modules/@cookbook/solid-intl/package.json
+index 75735fa..f35ab11 100644
+--- a/node_modules/@cookbook/solid-intl/package.json
++++ b/node_modules/@cookbook/solid-intl/package.json
+@@ -28,13 +28,28 @@
+   "exports": {
+     ".": {
+       "solid": "./dist/source/index.js",
+-      "import": "./dist/esm/index.js",
++      "import": {
++        "types": "./dist/types/index.d.ts",
++        "default": "./dist/esm/index.js"
++      },
+       "browser": {
+-        "import": "./dist/esm/index.js",
+-        "require": "./dist/cjs/index.cjs"
++        "import": {
++          "types": "./dist/types/index.d.ts",
++          "default": "./dist/esm/index.js"
++        },
++        "require": {
++          "types": "./dist/types/index.d.ts",
++          "default": "./dist/cjs/index.cjs"
++        }
++      },
++      "require": {
++        "default": "./dist/cjs/index.cjs",
++        "types": "./dist/types/index.d.ts"
+       },
+-      "require": "./dist/cjs/index.cjs",
+-      "node": "./dist/cjs/index.cjs"
++      "node": {
++        "default": "./dist/cjs/index.cjs",
++        "types": "./dist/types/index.d.ts"
++      }
+     }
+   },
+   "scripts": {

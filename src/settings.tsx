@@ -7,6 +7,7 @@ import {
     Typography
 } from '@suid/material';
 import { createSignal, Show } from 'solid-js';
+import { useIntl } from '@cookbook/solid-intl';
 import type { SettingsInfo, ClientInfo } from './App';
 
 interface SettingsProps {
@@ -15,6 +16,7 @@ interface SettingsProps {
 }
 
 function Settings (props: SettingsProps) {
+    const intl = useIntl();
     return (
         <Stack spacing={5}>
             <Stack spacing={1}>
@@ -26,7 +28,10 @@ function Settings (props: SettingsProps) {
                     }}
                     color='text.secondary'
                 >
-                    Project
+                    {intl.formatMessage({
+                        id: 'app.settings.project',
+                        defaultMessage: 'Project'
+                    })}
                 </Typography>
                 <Card>
                     <Box sx={{padding: '16px'}}>
@@ -39,7 +44,10 @@ function Settings (props: SettingsProps) {
                                 alignItems: 'center'
                             }}>
                                 <Typography>
-                                    Convert Sideload Extension's Blocks Into Procedures Call
+                                    {intl.formatMessage({
+                                        id: 'app.settings.project.convertProcCall',
+                                        defaultMessage: 'Convert Sideload Extension\'s Blocks Into Procedures Call'
+                                    })}
                                     <Show when={!props.clientInfo() || props.clientInfo()!.version < 5}>
                                         <Typography
                                             color='text.secondary'
@@ -75,7 +83,10 @@ function Settings (props: SettingsProps) {
                     }}
                     color='text.secondary'
                 >
-                    Extension
+                    {intl.formatMessage({
+                        id: 'app.settings.extension',
+                        defaultMessage: 'Extension'
+                    })}
                 </Typography>
                 <Card>
                     <Box sx={{padding: '16px'}}>
@@ -88,7 +99,10 @@ function Settings (props: SettingsProps) {
                                 alignItems: 'center'
                             }}>
                                 <Typography>
-                                    Don't Expose "Scratch" Object Globally
+                                    {intl.formatMessage({
+                                        id: 'app.settings.extension.dontExposeCtx',
+                                        defaultMessage: 'Don\'t Expose "Scratch" Object Globally'
+                                    })}
                                     <Show when={!props.clientInfo() || props.clientInfo()!.version < 5}>
                                         <Typography
                                             color='text.secondary'
@@ -116,7 +130,10 @@ function Settings (props: SettingsProps) {
                                 alignItems: 'center'
                             }}>
                                 <Typography>
-                                    No Confirmation Dialog While Loading Project
+                                    {intl.formatMessage({
+                                        id: 'app.settings.extension.noConfirmDialog',
+                                        defaultMessage: 'No Confirmation Dialog While Loading Project'
+                                    })}
                                     <Show when={!props.clientInfo() || props.clientInfo()!.version < 5}>
                                         <Typography
                                             color='text.secondary'
@@ -144,7 +161,10 @@ function Settings (props: SettingsProps) {
                                 alignItems: 'center'
                             }}>
                                 <Typography>
-                                    Load From Gallery's Extensions Only
+                                    {intl.formatMessage({
+                                        id: 'app.settings.extension.loadFromGallaryOnly',
+                                        defaultMessage: 'Load From Gallery\'s Extensions Only'
+                                    })}
                                     <Show when={!props.clientInfo() || props.clientInfo()!.version < 6}>
                                         <Typography
                                             color='text.secondary'
