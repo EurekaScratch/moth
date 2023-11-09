@@ -22,6 +22,7 @@
   "app.settings.extension.noConfirmDialog": "No Confirmation Dialog While Loading Project",
   "app.settings.project": "Project",
   "app.settings.project.convertProcCall": "Convert Sideload Extension's Blocks Into Procedures Call",
+  "app.settings.project.sideloadOnly": "Only load extension loaded by Chibi",
   "app.title.gallary": "Extension Gallary",
   "app.title.manage": "Manage Extension",
   "app.title.settings": "Settings"

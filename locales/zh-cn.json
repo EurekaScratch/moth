@@ -22,6 +22,7 @@
   "app.settings.extension.noConfirmDialog": "不确认加载带侧载扩展的项目",
   "app.settings.project": "项目",
   "app.settings.project.convertProcCall": "将侧载扩展积木转换为自定义积木",
+  "app.settings.project.sideloadOnly": "仅加载通过 Chibi 加载的扩展",
   "app.title.gallary": "扩展橱窗",
   "app.title.manage": "扩展管理",
   "app.title.settings": "设置"

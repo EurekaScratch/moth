@@ -15,6 +15,7 @@ export interface SettingsInfo {
     convertProcCall: boolean;
     dontExposeCtx: boolean;
     noConfirmDialog: boolean;
+    sideloadOnly: boolean;
 }
 
 export interface ClientInfo {

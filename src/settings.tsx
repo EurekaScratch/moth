@@ -70,6 +70,37 @@ function Settings (props: SettingsProps) {
                                     disabled={!props.clientInfo() || props.clientInfo()!.version < 5}
                                 />
                             </Box>
+                            <Box sx={{
+                                display: 'flex',
+                                alignItems: 'center'
+                            }}>
+                                <Typography>
+                                    {intl.formatMessage({
+                                        id: 'app.settings.project.sideloadOnly',
+                                        defaultMessage: 'Only load extension loaded by Chibi'
+                                    })}
+                                    <Show when={!props.clientInfo() || props.clientInfo()!.version < 6}>
+                                        <Typography
+                                            color='text.secondary'
+                                            sx={{fontSize: '12px'}}
+                                        >{`Required Chibi >= 6`}</Typography>
+                                    </Show>
+                                </Typography>
+                                <Switch
+                                    sx={{marginLeft: 'auto'}}
+                                    checked={props.settings()?.sideloadOnly}
+                                    onChange={(_, value) => {
+                                        window.opener.postMessage({
+                                            type: 'updateSettings',
+                                            item: {
+                                                name: 'sideloadOnly',
+                                                value: value
+                                            }
+                                        }, '*');
+                                    }}
+                                    disabled={!props.clientInfo() || props.clientInfo()!.version < 6}
+                                />
+                            </Box>
                         </Stack>
                     </Box>
                 </Card>
