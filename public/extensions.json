@@ -17,5 +17,52 @@
             "compatible": ["sc", "tw"],
             "minimum_chibi_version": 3
         }
+    },
+    "SIPC": {
+        "163music": {
+            "name": "163 Music",
+            "description": "",
+            "unsandboxed": false,
+            "minimum_chibi_version": 3
+        },
+        "Consoles": {
+            "name": "Consoles",
+            "description": "Console-related stuffs.",
+            "unsandboxed": false,
+            "minimum_chibi_version": 3
+        },
+        "Encoding": {
+            "name": "Encoding",
+            "description": "Encode strings to Unicode, Base64, URL",
+            "unsandboxed": false,
+            "minimum_chibi_version": 3
+        },
+        "Recoding": {
+            "name": "Recoding",
+            "description": "Record and download recordings.",
+            "unsandboxed": true,
+            "minimum_chibi_version": 3
+        },
+        "Time": {
+            "name": "Time",
+            "description": "Time-related stuffs.",
+            "unsandboxed": false,
+            "minimum_chibi_version": 3
+        },
+        "WebData": {
+            "name": "WebData",
+            "description": "Store data in the cloud.",
+            "unsandboxed": false,
+            "minimum_chibi_version": 3
+        }
+    },
+    "WitCat": {
+        "WitCatInput": {
+            "name": "WitCat's Input",
+            "description": "Create inputs in Scratch!",
+            "unsandboxed": true,
+            "compatible": ["sc"],
+            "minimum_chibi_version": 3
+        }
     }
 }

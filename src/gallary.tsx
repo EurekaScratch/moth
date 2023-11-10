@@ -127,7 +127,7 @@ function Gallary (props: GallaryProps) {
     return (
         <Box sx={{
             display: 'flex',
-            justifyContent: 'space-around',
+            justifyContent: 'center',
             flexWrap: 'wrap',
             flexDirection: 'row',
             gap: '1rem'
