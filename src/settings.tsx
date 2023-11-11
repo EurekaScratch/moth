@@ -52,7 +52,7 @@ function Settings (props: SettingsProps) {
                                         <Typography
                                             color='text.secondary'
                                             sx={{fontSize: '12px'}}
-                                        >{`Required Chibi >= 5`}</Typography>
+                                        >{`Required Eureka >= 5`}</Typography>
                                     </Show>
                                 </Typography>
                                 <Switch
@@ -77,13 +77,13 @@ function Settings (props: SettingsProps) {
                                 <Typography>
                                     {intl.formatMessage({
                                         id: 'app.settings.project.sideloadOnly',
-                                        defaultMessage: 'Only load extension loaded by Chibi'
+                                        defaultMessage: 'Only load extension loaded by Eureka'
                                     })}
                                     <Show when={!props.clientInfo() || props.clientInfo()!.version < 6}>
                                         <Typography
                                             color='text.secondary'
                                             sx={{fontSize: '12px'}}
-                                        >{`Required Chibi >= 6`}</Typography>
+                                        >{`Required Eureka >= 6`}</Typography>
                                     </Show>
                                 </Typography>
                                 <Switch
@@ -138,7 +138,7 @@ function Settings (props: SettingsProps) {
                                         <Typography
                                             color='text.secondary'
                                             sx={{fontSize: '12px'}}
-                                        >{`Required Chibi >= 5`}</Typography>
+                                        >{`Required Eureka >= 5`}</Typography>
                                     </Show>
                                 </Typography>
                                 <Switch
@@ -169,7 +169,7 @@ function Settings (props: SettingsProps) {
                                         <Typography
                                             color='text.secondary'
                                             sx={{fontSize: '12px'}}
-                                        >{`Required Chibi >= 5`}</Typography>
+                                        >{`Required Eureka >= 5`}</Typography>
                                     </Show>
                                 </Typography>
                                 <Switch
@@ -200,7 +200,7 @@ function Settings (props: SettingsProps) {
                                         <Typography
                                             color='text.secondary'
                                             sx={{fontSize: '12px'}}
-                                        >{`Required Chibi >= 6`}</Typography>
+                                        >{`Required Eureka >= 6`}</Typography>
                                     </Show>
                                 </Typography>
                                 <Switch

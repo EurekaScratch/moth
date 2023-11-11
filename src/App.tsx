@@ -23,27 +23,27 @@ export interface ClientInfo {
     url: string;
 }
 
-interface ChibiDispatchedExtensions {
+interface EurekaDispatchedExtensions {
     type: 'extension';
     extensions: ExtensionInfo[];
 }
 
-interface ChibiDispatchedClientInfo {
+interface EurekaDispatchedClientInfo {
     type: 'handshake';
     clientInfo: ClientInfo;
 }
 
-interface ChibiDispatchedSettings {
+interface EurekaDispatchedSettings {
     type: 'settings';
     settings: Partial<SettingsInfo>;
 }
 
-type ChibiDispatched = ChibiDispatchedSettings | ChibiDispatchedExtensions | ChibiDispatchedClientInfo;
+type EurekaDispatched = EurekaDispatchedSettings | EurekaDispatchedExtensions | EurekaDispatchedClientInfo;
 
 const messages = defineMessages({
-  chibi: {
+  eureka: {
     id: 'app.name',
-    defaultMessage: 'Chibi',
+    defaultMessage: 'Eureka',
   },
   manage: {
     id: 'app.title.manage',
@@ -60,7 +60,7 @@ const messages = defineMessages({
 });
 
 const subtitleMap = {
-    default: messages.chibi,
+    default: messages.eureka,
     manage: messages.manage,
     gallary: messages.gallary,
     settings: messages.settings
@@ -78,9 +78,9 @@ function App () {
     createEffect(() => {
         window.location.hash = page();
         if (page() in subtitleMap) {
-            document.title = `${intl.formatMessage(messages.chibi)} | ${intl.formatMessage(subtitleMap[page() as keyof typeof subtitleMap])}`;
+            document.title = `${intl.formatMessage(messages.eureka)} | ${intl.formatMessage(subtitleMap[page() as keyof typeof subtitleMap])}`;
         } else {
-            document.title = `${intl.formatMessage(messages.chibi)}`;
+            document.title = `${intl.formatMessage(messages.eureka)}`;
         }
     });
 
@@ -88,7 +88,7 @@ function App () {
         if (!window.opener) return;
         window.addEventListener('message', (event: MessageEvent) => {
             if (!('type' in event.data)) return;
-            switch ((event.data as ChibiDispatched).type) {
+            switch ((event.data as EurekaDispatched).type) {
             case 'handshake':
                 setClientInfo(event.data.clientInfo);
                 break;

@@ -24,17 +24,17 @@ function Home () {
                 flexDirection: 'column',
                 alignItems: 'center'
             }}>
-                <img alt='chibimoth' src='/chibi.png' style={{width: '200px'}} />
+                <img alt='eureka' src='/eureka.svg' style={{width: '150px'}} />
                 <Typography variant='h3' sx={{fontWeight: 500}}>
                     {intl.formatMessage({
                         id: 'app.home.title',
-                        defaultMessage: 'Chibi'
+                        defaultMessage: 'Eureka'
                     })}
                 </Typography>
                 <Typography variant='subtitle1' color='text.secondary'>
                     {intl.formatMessage({
                         id: 'app.home.slogan',
-                        defaultMessage: 'Load your Scratch extensions anywhere.'
+                        defaultMessage: 'Universal Scratch Extension Loader.'
                     })}
                 </Typography>
                 <Stack direction='row' spacing={2} sx={{marginTop: '2rem'}}>
@@ -79,8 +79,8 @@ function Home () {
                 <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
                     {intl.formatMessage({
                         id: 'app.home.subdescription1',
-                        defaultMessage: 'Chibi loads extensions by directly injecting them into the Scratch virtual machine, which allows you to use your favorite extensions without being restricted by the editor itself.',
-                        description: 'Chibi loads extensions by directly injecting them into the Scratch virtual machine, which allows you to use your favorite extensions without being restricted by the editor itself.'
+                        defaultMessage: 'Eureka loads extensions by directly injecting them into the Scratch virtual machine, which allows you to use your favorite extensions without being restricted by the editor itself.',
+                        description: 'Eureka loads extensions by directly injecting them into the Scratch virtual machine, which allows you to use your favorite extensions without being restricted by the editor itself.'
                     })}
                 </Typography>
                 <Stack direction={{ xs: 'column', sm: 'row' }} sx={{flexFlow: 'wrap', justifyContent: 'center'}}>
@@ -111,9 +111,9 @@ function Home () {
                     <Card sx={{width: '300px', margin: '1rem'}}>
                         <CardMedia
                             component='img'
-                            alt='screenshot from Turbowarp'
+                            alt='screenshot from Xiaimawang'
                             height='240'
-                            image='/carousel/tw.png'
+                            image='/carousel/xmw.png'
                         />
                     </Card>
                 </Stack>
@@ -134,8 +134,8 @@ function Home () {
                 <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
                     {intl.formatMessage({
                         id: 'app.home.subdescription2',
-                        defaultMessage: 'Chibi implements the loader independently, which means extensions have a unified implementation standard rather rely on the editor.',
-                        description: 'Chibi implements the loader independently, which means extensions have a unified implementation standard rather rely on the editor.'
+                        defaultMessage: 'Eureka implements the loader independently, which means extensions have a unified implementation standard rather rely on the editor.',
+                        description: 'Eureka implements the loader independently, which means extensions have a unified implementation standard rather rely on the editor.'
                     })}
                 </Typography>
                 <Card sx={{width: '100%', maxWidth: '400px', marginTop: '1rem'}}>
@@ -162,8 +162,8 @@ function Home () {
                 <Typography variant='subtitle1' sx={{marginBottom: '1rem'}}>
                     {intl.formatMessage({
                         id: 'app.home.subdescription3',
-                        defaultMessage: 'Chibi adds support for non-sandbox extensions and TurboWarp extensions. This means you can seamlessly sideload these extensions into your projects.',
-                        description: 'Chibi adds support for non-sandbox extensions and TurboWarp extensions. This means you can seamlessly sideload these extensions into your projects.'
+                        defaultMessage: 'Eureka adds support for non-sandbox extensions and TurboWarp extensions. This means you can seamlessly sideload these extensions into your projects.',
+                        description: 'Eureka adds support for non-sandbox extensions and TurboWarp extensions. This means you can seamlessly sideload these extensions into your projects.'
                     })}
                 </Typography>
             </Box>
