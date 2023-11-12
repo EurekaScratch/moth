@@ -36,7 +36,8 @@ enum Platform {
     CCW = 'ccw',
     Cocrea = 'Cocrea',
     TurboWarpCN = 'twcn',
-    rCodenow = 'rc'
+    rCodenow = 'rc',
+    Xueersi = 'xueersi'
 }
 
 ```
