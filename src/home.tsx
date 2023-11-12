@@ -8,10 +8,22 @@ import {
     CardMedia,
     Stack
 } from '@suid/material';
+import { createSignal, onMount } from 'solid-js';
 import { useIntl } from '@cookbook/solid-intl';
 import CodeIcon from '@suid/icons-material/Code';
 
+interface ReleaseManifest {
+    version: string;
+    publishTime: string;
+}
+
 function Home () {
+    const [manifest, setManifest] = createSignal<ReleaseManifest | null>(null);
+    onMount(async () => {
+        const res = await fetch('/release/manifest.json');
+        const manifest = await res.json();
+        setManifest(manifest);
+    });
     const intl = useIntl();
     return (
         <Stack
@@ -37,11 +49,19 @@ function Home () {
                         defaultMessage: 'Universal Scratch Extension Loader.'
                     })}
                 </Typography>
+                <Typography variant='subtitle2' color='text.secondary'>
+                    {intl.formatMessage({
+                        id: 'app.home.version',
+                        defaultMessage: 'Latest version: {version}'
+                    }, {
+                        version: manifest() ? manifest()!.version : 'Loading'
+                    })}
+                </Typography>
                 <Stack direction='row' spacing={2} sx={{marginTop: '2rem'}}>
                     <Button
                         variant='contained'
                         onClick={() => {
-                            window.open('https://github.com/SimonShiki/scratch-chibi/releases');
+                            window.open('/release/eureka-loader.user.js');
                         }}
                     >
                         {intl.formatMessage({
