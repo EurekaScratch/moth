@@ -8,6 +8,8 @@ jobs:
   validate:
     name: Validating Code
     runs-on: ubuntu-latest
+    env:
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
