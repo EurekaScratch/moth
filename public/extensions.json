@@ -22,19 +22,19 @@
         "163music": {
             "name": "163 Music",
             "description": "",
-            "unsandboxed": false,
+            "unsandboxed": true,
             "minimum_chibi_version": 3
         },
         "Consoles": {
             "name": "Consoles",
             "description": "Console-related stuffs.",
-            "unsandboxed": false,
+            "unsandboxed": true,
             "minimum_chibi_version": 3
         },
         "Encoding": {
             "name": "Encoding",
             "description": "Encode strings to Unicode, Base64, URL",
-            "unsandboxed": false,
+            "unsandboxed": true,
             "minimum_chibi_version": 3
         },
         "Recoding": {
@@ -46,13 +46,13 @@
         "Time": {
             "name": "Time",
             "description": "Time-related stuffs.",
-            "unsandboxed": false,
+            "unsandboxed": true,
             "minimum_chibi_version": 3
         },
         "WebData": {
             "name": "WebData",
             "description": "Store data in the cloud.",
-            "unsandboxed": false,
+            "unsandboxed": true,
             "minimum_chibi_version": 3
         }
     },
