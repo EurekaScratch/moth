@@ -29,7 +29,9 @@ enum Platform {
     Cocrea = 'Cocrea',
     TurboWarpCN = 'twcn',
     rCodenow = 'rc',
-    Xueersi = 'xueersi'
+    Xueersi = 'xueersi',
+    CreatiCode = 'creaticode',
+    Adacraft = 'ada'
 }
 
 interface GallaryInfo {
@@ -62,7 +64,9 @@ const platformMap = {
     [Platform.Cocrea]: 'cocrea.world',
     [Platform.TurboWarpCN]: 'editor.turbowarp.cn',
     [Platform.rCodenow]: '0832.ink',
-    [Platform.Xueersi]: 'code.xueersi.com'
+    [Platform.Xueersi]: 'code.xueersi.com',
+    [Platform.CreatiCode]: 'play.creaticode.com',
+    [Platform.Adacraft]: 'www.adacraft.org'
 };
 
 function isUnavailable (info: GallaryInfo, clientInfo: ClientInfo | null) {
