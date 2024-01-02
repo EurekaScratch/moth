@@ -37,7 +37,10 @@ enum Platform {
     Cocrea = 'Cocrea',
     TurboWarpCN = 'twcn',
     rCodenow = 'rc',
-    Xueersi = 'xueersi'
+    Xueersi = 'xueersi',
+    CreatiCode = 'creaticode',
+    Adacraft = 'ada',
+    PenguinMod = 'pm'
 }
 
 ```

@@ -31,7 +31,8 @@ enum Platform {
     rCodenow = 'rc',
     Xueersi = 'xueersi',
     CreatiCode = 'creaticode',
-    Adacraft = 'ada'
+    Adacraft = 'ada',
+    PenguinMod = 'pm'
 }
 
 interface GallaryInfo {
@@ -66,7 +67,8 @@ const platformMap = {
     [Platform.rCodenow]: '0832.ink',
     [Platform.Xueersi]: 'code.xueersi.com',
     [Platform.CreatiCode]: 'play.creaticode.com',
-    [Platform.Adacraft]: 'www.adacraft.org'
+    [Platform.Adacraft]: 'www.adacraft.org',
+    [Platform.PenguinMod]: 'studio.penguinmod.com'
 };
 
 function isUnavailable (info: GallaryInfo, clientInfo: ClientInfo | null) {
