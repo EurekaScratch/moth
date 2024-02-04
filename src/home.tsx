@@ -73,7 +73,7 @@ function Home () {
                         color='secondary'
                         variant='outlined'
                         onClick={() => {
-                            window.open('https://github.com/SimonShiki/scratch-chibi');
+                            window.open('https://github.com/EurekaScratch/eureka-loader');
                         }}
                     >
                         {intl.formatMessage({
