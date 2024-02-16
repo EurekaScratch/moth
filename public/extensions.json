@@ -68,7 +68,21 @@
     "qxsck": {
         "strmani": {
             "name": "String proces",
-            "description": "Some methods for handling strings.",
+            "description": "Some blocks about string proces.",
+            "unsandboxed": true,
+            "compatible": ["sc","tw","xmw"],
+            "minimum_chibi_version": 3
+        },
+        "qxsckdataanalysis": {
+            "name": "Data analysis",
+            "description": "Some blocks about data analysis.",
+            "unsandboxed": true,
+            "compatible": ["sc","tw","xmw"],
+            "minimum_chibi_version": 3
+        },
+        "qxsckvarandlist": {
+            "name": "Variable and list",
+            "description": "Some blocks about variables and lists.",
             "unsandboxed": true,
             "compatible": ["sc","tw","xmw"],
             "minimum_chibi_version": 3
