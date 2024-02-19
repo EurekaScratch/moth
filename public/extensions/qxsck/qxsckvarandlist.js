@@ -11,6 +11,7 @@
     'qxsckvarandlist.asc': 'ascending',
     'qxsckvarandlist.desc': 'descending',
     'qxsckvarandlist.dictOrder': 'dictionary order',
+    'qxsckvarandlist.random': 'random',
 
     'qxsckvarandlist.complete': 'complete the missing parts',
     'qxsckvarandlist.delete': 'delete the excess parts',
@@ -43,13 +44,14 @@
     'qxsckvarandlist.replaceRangeOfList': 'replace items [LEFT] to [RIGHT] in list [LIST] with [VALUE]',
     'qxsckvarandlist.getIndexOfList': 'first index of [VALUE] in list [LIST]',
     'qxsckvarandlist.getIndexesOfList': 'indexes of [VALUE] in list [LIST]',
-    'qxsckvarandlist.newGetIndexesOfList': 'indexes of  [VALUE] in list [LIST]',
+    'qxsckvarandlist.newGetIndexesOfList': 'indexes of [VALUE] in list [LIST]',
     'qxsckvarandlist.getCountsOfList': 'number of [VALUE] in list [LIST]',
     'qxsckvarandlist.listContains': 'list [LIST] have [VALUE] ?',
     'qxsckvarandlist.copyList': 'copy list [LIST1] to list [LIST2]',
     'qxsckvarandlist.reverseList': 'reverse list [LIST]',
     'qxsckvarandlist.sortList': 'sort list [LIST] with [CASE]',
     'qxsckvarandlist.sortListRange': 'sort item [LEFT] to [RIGHT] in list [LIST] with [CASE]',
+    'qxsckvarandlist.isOrder': 'list [LIST] is [CASE] ?',
     'qxsckvarandlist.mapObject': 'map object [OBJ] , keys to list [LIST], and values to list [LIST2]',
     'qxsckvarandlist.associateList':'associate list [LIST] to keys, and [LIST2] to values, if length is different, then [DO]',
 
@@ -73,6 +75,7 @@
       'qxsckvarandlist.asc': '升序',
       'qxsckvarandlist.desc': '降序',
       'qxsckvarandlist.dictOrder': '字典序',
+      'qxsckvarandlist.random': '随机',
 
       'qxsckvarandlist.complete': '补全缺少部分',
       'qxsckvarandlist.delete': '删除多余部分',
@@ -112,6 +115,7 @@
       'qxsckvarandlist.reverseList': '反转列表 [LIST]',
       'qxsckvarandlist.sortList': '以 [CASE] 排序列表 [LIST]',
       'qxsckvarandlist.sortListRange': '以 [CASE] 排序列表 [LIST] 的第 [LEFT] 到 [RIGHT] 项',
+      'qxsckvarandlist.isOrder': '列表 [LIST] 是 [CASE] 的吗？',
       'qxsckvarandlist.mapObject': '映射对象 [OBJ] 的值到列表 [LIST] ，键到列表 [LIST2]',
       'qxsckvarandlist.associateList':'关联列表 [LIST] 为键，[LIST2] 为值，如果长度不同则 [DO]',
 
@@ -136,6 +140,48 @@
           result+=stringDict[idx];
         }
         return result;
+      };
+      this.sortFunc=function(data){
+        let arr=data.arr,order=data.order,length=data.arr.length;
+        let left=data.range?data.range[0]:1,right=data.range?data.range[1]:length;
+        if(left<1) left=1;
+        if(right>length) right=length;
+        left-=1,right-=1;
+        let list=arr.slice(left,right+1);
+        switch(order){
+          case 'asc':
+            list=list.map(val=>isNaN(Number(val))?0:Number(val));
+            list.sort((a,b)=>a-b);
+            break;
+          case 'desc':
+            list=list.map(val=>isNaN(Number(val))?0:Number(val));
+            list.sort((a,b)=>b-a);
+            break;
+          case 'dictOrder':
+            list=list.map(val=>String(val));
+            list.sort();
+            break;
+          case 'random':
+            list.sort(function(){
+              return (0.5-Math.random());
+            });
+            break;
+        }
+        let list2=arr.slice();
+        return [...list2.slice(0,left),...list,...list2.slice(right+1,length)];
+      };
+      this.isOrderFunc=function(arr,order){
+        if(order==='asc'){
+          for(let i=0;i<arr.length-1;i++){
+            if (arr[i]>arr[i+1]) return false;
+          }
+          return true;
+        }else{
+          for(let i=0;i<arr.length-1;i++){
+            if (arr[i]<arr[i+1]) return false;
+          }
+          return true;
+        }
       }
     }
 
@@ -653,6 +699,21 @@
             }
           },
           {
+            opcode:'isOrder',
+            blockType: 'Boolean',
+            text: this.formatMessage('qxsckvarandlist.isOrder'),
+            arguments: {
+              LIST: {
+                type: 'string',
+                defaultValue:'list'
+              },
+              CASE:{
+                type: 'string',
+                menu: 'isOrder.List',
+              },
+            }
+          },
+          {
             opcode:'mapObject',
             blockType: 'command',
             text: this.formatMessage('qxsckvarandlist.mapObject'),
@@ -765,6 +826,20 @@
               text: this.formatMessage("qxsckvarandlist.dictOrder"),
               value: 'dictOrder'
             },
+            {
+              text: this.formatMessage("qxsckvarandlist.random"),
+              value: 'random'
+            },
+          ],
+          'isOrder.List':[
+            {
+              text: this.formatMessage("qxsckvarandlist.asc"),
+              value: 'asc'
+            },
+            {
+              text: this.formatMessage("qxsckvarandlist.desc"),
+              value: 'desc'
+            },
           ],
           'associateList.List':[
             {
@@ -820,7 +895,7 @@
     }
 
     openCaseSensitive(args){
-      openCaseSensitive=(String(args.CASE)==='open'?true:false);
+      openCaseSensitive=(args.CASE==='open'?true:false);
     }
     haveList(args, util) {
       const variable = util.target.lookupVariableByNameAndType(String(args.LIST), 'list');
@@ -1106,49 +1181,27 @@
     }
     sortList(args,util){
       const variable = util.target.lookupVariableByNameAndType(String(args.LIST), 'list');
-      let order=String(args.CASE);
       if (variable) {
-        let list=variable.value.slice();
-        if(order==='asc'){
-          list=list.map(val=>isNaN(Number(val))?0:Number(val));
-          variable.value=list.sort((a,b)=>a-b);
-        }
-        else if(order==='desc'){
-          list=list.map(val=>isNaN(Number(val))?0:Number(val));
-          variable.value=list.sort((a,b)=>b-a);
-        }
-        else if(order==='dictOrder'){
-          list=list.map(val=>String(val));
-          variable.value=list.sort();
-        }
+        let order=args.CASE;
+        variable.value=this.sortFunc({arr:variable.value,order:order});
         variable._monitorUpToDate = false;
       }
     }
     sortListRange(args,util){
       const variable = util.target.lookupVariableByNameAndType(String(args.LIST), 'list');
-      let order=String(args.CASE);
       if (variable) {
-        let length=variable.value.length,left=Number(args.LEFT),right=Number(args.RIGHT);
-        if(left<1) left=1;
-        if(right>length) right=length;
-        left-=1,right-=1;
-        let list=variable.value.slice(left,right+1);
-        if(order==='asc'){
-          list=list.map(val=>isNaN(Number(val))?0:Number(val));
-          list=list.sort((a,b)=>a-b);
-        }
-        else if(order==='desc'){
-          list=list.map(val=>isNaN(Number(val))?0:Number(val));
-          list=list.sort((a,b)=>b-a);
-        }
-        else if(order==='dictOrder'){
-          list=list.map(val=>String(val));
-          list=list.sort();
-        }
-        let list2=variable.value.slice();
-        variable.value=[...list2.slice(0,left),...list,...list2.slice(right+1,length)];
+        let order=args.CASE,left=Number(args.LEFT),right=Number(args.RIGHT);
+        variable.value=this.sortFunc({arr:variable.value,order:order,range:[left,right]});
         variable._monitorUpToDate = false;
       }
+    }
+    isOrder(args,util){
+      const variable = util.target.lookupVariableByNameAndType(String(args.LIST), 'list');
+      if(variable){
+        let order=args.CASE;
+        return this.isOrderFunc(variable.value,order);
+      }
+      return false;
     }
     mapObject(args,util){
       const list = util.target.lookupVariableByNameAndType(String(args.LIST), 'list'),
