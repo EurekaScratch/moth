@@ -5,6 +5,9 @@
   let i10ndefaultValue={
     'qxsckvarandlist.name': 'variable and list',
 
+    'qxsckvarandlist.show': 'show',
+    'qxsckvarandlist.hide': 'hide',
+
     'qxsckvarandlist.open': 'open',
     'qxsckvarandlist.close': 'close',
 
@@ -21,6 +24,8 @@
     'qxsckvarandlist.setVar': 'set variable [VAR] to [VALUE]',
     'qxsckvarandlist.seriVarsToJson': 'convert all variables starting with [START] to json',
     'qxsckvarandlist.swapVar': 'swap variable [VAR] and [VAR2]',
+    'qxsckvarandlist.changeMonitorVar': '[CASE] variable [VAR]',
+    'qxsckvarandlist.isShowVar': 'variable [VAR] is showing?',
 
     'qxsckvarandlist.openCaseSensitive': '[CASE] case sensitive',
     'qxsckvarandlist.haveList': 'have list [LIST] ?',
@@ -32,6 +37,8 @@
     'qxsckvarandlist.getValueOfList': 'item # [INDEX] of list [LIST]',
     'qxsckvarandlist.seriListsToJson': 'convert all lists starting with [START] to json',
     'qxsckvarandlist.swapList': 'swap list [LIST] and [LIST2]',
+    'qxsckvarandlist.changeMonitorList': '[CASE] list [LIST]',
+    'qxsckvarandlist.isShowList': 'list [LIST] is showing?',
     'qxsckvarandlist.clearList': 'delete all of list [LIST]',
     'qxsckvarandlist.setList': 'set list [LIST] to list [LIST2]',
     'qxsckvarandlist.setListValue': 'set list [LIST] to [VALUE] [NUM] times',
@@ -69,6 +76,9 @@
     zh: {
       'qxsckvarandlist.name': '变量与列表',
 
+      'qxsckvarandlist.show': '显示',
+      'qxsckvarandlist.hide': '隐藏',
+
       'qxsckvarandlist.open': '打开',
       'qxsckvarandlist.close': '关闭',
 
@@ -85,6 +95,8 @@
       'qxsckvarandlist.setVar': '设置变量 [VAR] 的值为 [VALUE]',
       'qxsckvarandlist.seriVarsToJson': '将以 [START] 为开头的所有变量转换为json',
       'qxsckvarandlist.swapVar': '交换变量 [VAR] 和 [VAR2]',
+      'qxsckvarandlist.changeMonitorVar': '[CASE] 变量 [VAR]',
+      'qxsckvarandlist.isShowVar': '变量 [VAR] 显示了吗？',
 
       'qxsckvarandlist.openCaseSensitive': '[CASE] 大小写敏感',
       'qxsckvarandlist.haveList': '有列表 [LIST] 吗？',
@@ -96,6 +108,8 @@
       'qxsckvarandlist.getValueOfList': '列表 [LIST] 的第 [INDEX] 项',
       'qxsckvarandlist.seriListsToJson': '将以 [START] 为开头的所有列表转换为json',
       'qxsckvarandlist.swapList': '交换列表 [LIST] 和 [LIST2]',
+      'qxsckvarandlist.changeMonitorList': '[CASE] 列表 [LIST]',
+      'qxsckvarandlist.isShowList': '列表 [LIST] 显示了吗？',
       'qxsckvarandlist.clearList': '清空列表 [LIST]',
       'qxsckvarandlist.setList': '设置列表 [LIST] 的内容为列表 [LIST2]',
       'qxsckvarandlist.setListValue': '设置列表 [LIST] 为 [NUM] 个 [VALUE]',
@@ -128,6 +142,8 @@
 
   class VarAndList {
     constructor(){
+      const vm = Scratch.vm;
+      this.runtime = vm.runtime;
       this.formatMessage=function(id){
         return Scratch.translate({id: id,default: i10ndefaultValue[id]});
       };
@@ -182,7 +198,7 @@
           }
           return true;
         }
-      }
+      };
     }
 
     getInfo() {
@@ -255,6 +271,32 @@
               VAR2: {
                 type: 'string',
                 defaultValue:'variable2'
+              },
+            }
+          },
+          {
+            opcode:'changeMonitorVar',
+            blockType: 'command',
+            text: this.formatMessage('qxsckvarandlist.changeMonitorVar'),
+            arguments: {
+              CASE: {
+                type: 'string',
+                menu: 'changeMonitor.List',
+              },
+              VAR: {
+                type: 'string',
+                defaultValue:'variable'
+              },
+            }
+          },
+          {
+            opcode:'isShowVar',
+            blockType: 'Boolean',
+            text: this.formatMessage('qxsckvarandlist.isShowVar'),
+            arguments: {
+              VAR: {
+                type: 'string',
+                defaultValue:'variable'
               },
             }
           },
@@ -385,6 +427,32 @@
               LIST2: {
                 type: 'string',
                 defaultValue:'list2'
+              },
+            }
+          },
+          {
+            opcode:'changeMonitorList',
+            blockType: 'command',
+            text: this.formatMessage('qxsckvarandlist.changeMonitorList'),
+            arguments: {
+              CASE: {
+                type: 'string',
+                menu: 'changeMonitor.List',
+              },
+              LIST: {
+                type: 'string',
+                defaultValue:'list'
+              },
+            }
+          },
+          {
+            opcode:'isShowList',
+            blockType: 'Boolean',
+            text: this.formatMessage('qxsckvarandlist.isShowList'),
+            arguments: {
+              LIST: {
+                type: 'string',
+                defaultValue:'list'
               },
             }
           },
@@ -803,6 +871,16 @@
           },
         ],
         menus: {
+          'changeMonitor.List':[
+            {
+              text: this.formatMessage("qxsckvarandlist.show"),
+              value: 'show'
+            },
+            {
+              text: this.formatMessage("qxsckvarandlist.hide"),
+              value: 'hide'
+            },
+          ],
           'openCaseSensitive.List':[
             {
               text: this.formatMessage("qxsckvarandlist.open"),
@@ -855,6 +933,25 @@
       };
     }
 
+    //from turbowarp-vm
+    changeMonitorVisibility(id, visible) {
+      // Send the monitor blocks an event like the flyout checkbox event.
+      // This both updates the monitor state and changes the isMonitored block flag.
+      this.runtime.monitorBlocks.changeBlock({
+        id: id, // Monitor blocks for variables are the variable ID.
+        element: 'checkbox', // Mimic checkbox event from flyout.
+        value: visible
+      }, this.runtime);
+    }
+
+    isShow(args) {
+      let list = args.list;
+      if (!list) return false;
+      list = this.runtime.getMonitorState().get(list.id);
+      if (!list) return false;
+      return list.visible;
+    }
+
     haveVar(args, util) {
       const variable = util.target.lookupVariableByNameAndType(String(args.VAR), '');
       return variable ? true : false;
@@ -867,6 +964,12 @@
       const variable = util.target.lookupVariableByNameAndType(String(args.VAR), '');
       if (variable) {
         variable.value = args.VALUE;
+        if (variable.isCloud) {
+          util.runtime.ioDevices.cloud.requestUpdateVariable(
+            variable.name,
+            variable.value
+          );
+        }
       }
     }
     seriVarsToJson(args, util) {
@@ -892,6 +995,16 @@
         variable.value=variable2.value;
         variable2.value=value;
       }
+    }
+    changeMonitorVar(args,util){
+      const variable = util.target.lookupVariableByNameAndType(String(args.VAR), '');
+      if (variable) {
+        this.changeMonitorVisibility(variable.id, args.CASE==='show');
+      }
+    }
+    isShowVar(args,util){
+      const variable = util.target.lookupVariableByNameAndType(String(args.VAR), '');
+      return this.isShow({list:variable});
     }
 
     openCaseSensitive(args){
@@ -967,6 +1080,16 @@
         variable2._monitorUpToDate = false;
       }
     }
+    changeMonitorList(args,util){
+      const variable = util.target.lookupVariableByNameAndType(String(args.LIST), 'list');
+      if (variable) {
+        this.changeMonitorVisibility(variable.id, args.CASE==='show');
+      }
+    }
+    isShowList(args,util){
+      const variable = util.target.lookupVariableByNameAndType(String(args.LIST), 'list');
+      return this.isShow({list:variable});
+    }
     clearList(args, util) {
       /** @type {VM.ListVariable} */
       const variable = util.target.lookupVariableByNameAndType(String(args.LIST), 'list');
@@ -981,7 +1104,7 @@
       if (variable) {
         try{
           let arr=JSON.parse(args.LIST2);
-          variable.value=arr;
+          if(Array.isArray(arr)) variable.value=arr.map(val=>String(val));
           variable._monitorUpToDate = false;
         }catch(error){
           console.log('error:', error);
