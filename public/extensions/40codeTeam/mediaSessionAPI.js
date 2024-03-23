@@ -70,10 +70,10 @@
                     "40code.MediaSessApi.v1.unset": "清除所有设定",
 
                     "40code.MediaSessApi.v1.set_actionhandler": "[on_off] mediaSession [action]事件接收帽子块",
-                    "40code.MediaSessApi.v1.set_actionhandler.on": "打开",
-                    "40code.MediaSessApi.v1.set_actionhandler.off": "关闭",
-                    "40code.MediaSessApi.v1.set_actionhandler_status": "已打开的 mediaSession 事件接收帽子块",
-                    "40code.MediaSessApi.v1.set_actionhandler_reset": "关闭所有 mediaSession 事件接收帽子块",
+                    "40code.MediaSessApi.v1.set_actionhandler.on": "启用",
+                    "40code.MediaSessApi.v1.set_actionhandler.off": "禁用",
+                    "40code.MediaSessApi.v1.set_actionhandler_status": "已启用的 mediaSession 事件接收帽子块",
+                    "40code.MediaSessApi.v1.set_actionhandler_reset": "禁用所有 mediaSession 事件接收帽子块",
                     "40code.MediaSessApi.v1.actionhandler": "用户控制事件[action]发生时",
 
                     "40code.MediaSessApi.v1.actionhandler.menus.nexttrack": "下一首",
@@ -88,13 +88,31 @@
                 },
                 en: {
                     "40code.MediaSessApi.v1.canIUse": 'Is mediaSession available',
-                    "40code.MediaSessApi.v1.set": "Set the current broadcast media [key] to [value]",
-                    "40code.MediaSessApi.v1.set.menus.title": "title",
-                    "40code.MediaSessApi.v1.set.menus.artist": "artist",
-                    "40code.MediaSessApi.v1.set.menus.album": "album",
-                    "40code.MediaSessApi.v1.set_artwork": "Set the current broadcast media cover diagram to [value]",
-                    "40code.MediaSessApi.v1.unset": "Clear all set"
-                }
+                    "40code.MediaSessApi.v1.set": "Set the current playing media [key] to [value]",
+                    "40code.MediaSessApi.v1.set.menus.title": "Title",
+                    "40code.MediaSessApi.v1.set.menus.artist": "Artist name",
+                    "40code.MediaSessApi.v1.set.menus.album": "Album name",
+                    "40code.MediaSessApi.v1.set_artwork": "Set the current playing media cover image link to [value]",
+                    "40code.MediaSessApi.v1.set_position": "Set the current playback progress: total duration:[duration]seconds, current playback to: [position]seconds, playback rate: [playbackRate] times",
+                    "40code.MediaSessApi.v1.unset": "Clear all Set",
+
+                    "40code.MediaSessApi.v1.set_actionhandler": "[on_off] mediaSession [action] event receiving hat block",
+                    "40code.MediaSessApi.v1.set_actionhandler.on": "Enable",
+                    "40code.MediaSessApi.v1.set_actionhandler.off": "Disable",
+                    "40code.MediaSessApi.v1.set_actionhandler_status": "Enabled mediaSession event receiving hat block",
+                    "40code.MediaSessApi.v1.set_actionhandler_reset": "Disable all mediaSession event receiving hat blocks",
+                    "40code.MediaSessApi.v1.actionhandler": "When the user control event [action] occurs",
+
+                    "40code.MediaSessApi.v1.actionhandler.menus.nexttrack": "Next track",
+                    "40code.MediaSessApi.v1.actionhandler.menus.previoustrack": "Previous track",
+                    "40code.MediaSessApi.v1.actionhandler.menus.stop": "Stop",
+                    "40code.MediaSessApi.v1.actionhandler.menus.play": "Play",
+                    "40code.MediaSessApi.v1.actionhandler.menus.pause": "Pause",
+                    "40code.MediaSessApi.v1.actionhandler.menus.seekbackward": "Rewind",
+                    "40code.MediaSessApi.v1.actionhandler.menus.seekforward": "Fast forward",
+
+                    "40code.MediaSessApi.v1.compatibility": "Compatibility: Use the <audio> element that plays silent audio to display the Media Session (invalid after restarting the work)"
+                },
             })
 
             this.mediaSession_reset()
