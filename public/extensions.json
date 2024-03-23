@@ -87,5 +87,13 @@
             "compatible": ["sc","tw","xmw"],
             "minimum_chibi_version": 3
         }
+    },
+    "40codeTeam": {
+        "40codeMediaSessApi":{
+            "name": "Media Session",
+            "description": "The SC block form of the Media Session API , allows SC works to basically use the browser Media Session ability.",
+            "id": "40codeMediaSessApi",
+            "unsandboxed": true
+        }
     }
 }
