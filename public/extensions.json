@@ -92,7 +92,6 @@
         "40codeMediaSessApi":{
             "name": "Media Session",
             "description": "The SC block form of the Media Session API , allows SC works to basically use the browser Media Session ability.",
-            "id": "40codeMediaSessApi",
             "unsandboxed": true
         }
     }
